@@ -11,20 +11,15 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import web.model.User;
 
 import javax.sql.DataSource;
-import java.util.Objects;
 import java.util.Properties;
-
 
 @Configuration
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
 @ComponentScan(value = "web")
 public class AapData {
-
-
     private final Environment env;
 
     public AapData(Environment env) {
@@ -48,7 +43,6 @@ public class AapData {
         factoryBean.setPackagesToScan("web.model");
         factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         factoryBean.setJpaProperties(hibernateProperties());
-
         return factoryBean;
     }
 
@@ -66,6 +60,5 @@ public class AapData {
         manager.setEntityManagerFactory(entityManagerFactory().getObject());
         return manager;
     }
-
 }
 

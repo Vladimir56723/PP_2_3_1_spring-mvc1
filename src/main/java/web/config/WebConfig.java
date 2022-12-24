@@ -16,9 +16,6 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 @EnableWebMvc
 @ComponentScan("web")
 public class WebConfig implements WebMvcConfigurer {
-    // находим и копируем эти методы и поля + конструктор постоянно
-// при создании приложения на MVC при помощи *thymeleaf* шаблонизатора а не стандартного
-    //
     private final ApplicationContext applicationContext;
 
     public WebConfig(ApplicationContext applicationContext) {
@@ -26,13 +23,12 @@ public class WebConfig implements WebMvcConfigurer {
         this.applicationContext = applicationContext;
     }
 
-
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
-        templateResolver.setPrefix("/WEB-INF/pages/"); //задаем папку где будут лежать html файлы
-        templateResolver.setSuffix(".html"); // ставим расширение
+        templateResolver.setPrefix("/WEB-INF/pages/");
+        templateResolver.setSuffix(".html");
         return templateResolver;
     }
 
@@ -44,14 +40,13 @@ public class WebConfig implements WebMvcConfigurer {
         return templateEngine;
     }
 
-
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
         resolver.setTemplateEngine(templateEngine());
-
         registry.viewResolver(resolver);
     }
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");

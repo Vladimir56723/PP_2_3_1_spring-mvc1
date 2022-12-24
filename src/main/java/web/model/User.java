@@ -3,16 +3,12 @@ package web.model;
 import javax.persistence.*;
 
 @Entity
-@Table
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
     private String firstname;
-    @Column
     private String lastname;
-    @Column
     private String email;
 
     public User() {

@@ -6,10 +6,10 @@
 </head>
 <body>
 <form th:method="patch" th:action="@{/users/{id}(id=${user.getId()})}" th:object="${user}">
-    <label for="n">Имя:</label>
+    <label for="n">Name:</label>
     <input id="n" type="text" th:field="*{firstname}" th:value="${user.getFirstname()}">
     <br>
-    <label for="f">Фамилия:</label>
+    <label for="f">Lastname:</label>
     <input id="f" type="text" th:field="*{lastname}" th:value="${user.getLastname()}">
     <br>
     <label for="e">Email:</label>
